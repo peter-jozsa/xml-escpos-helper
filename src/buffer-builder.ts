@@ -17,8 +17,8 @@ export class BufferBuilder {
     return this;
   }
 
-  public resetCharacterCodeTable(): BufferBuilder {
-    this.buffer.write(Command.ESC_t(0));
+  public setCodePage(codePage: number): BufferBuilder {
+    this.buffer.write(Command.ESC_t(codePage));
     return this;
   }
 

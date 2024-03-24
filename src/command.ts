@@ -23,7 +23,7 @@ export class Command {
   public static ESC_G              = (n: number): number[] => [Command.ESC, 0x47, n]; // ESCGn
   public static ESC_J              = (n: number): number[] => [Command.ESC, 0x4A, n]; // ESCJn
   public static ESC_M              = (n: number): number[] => [Command.ESC, 0x4D, n]; // ESCMn
-  public static ESC_t              = (n: number): number[] => [Command.ESC, 0x07, n]; // ESCtn
+  public static ESC_t              = (n: number): number[] => [Command.ESC, 0x74, n]; // ESCtn
   public static ESC_Z              = (m: number, n: number, k: number): number[] => [Command.ESC, 0x5A, m, n, k]; // ESCZmnk
   public static ESC_r              = (n: number): number[] => [Command.ESC, 0x72, n]; // ESCR
 
