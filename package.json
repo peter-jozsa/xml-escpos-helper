@@ -21,6 +21,7 @@
   },
   "license": "Apache-2.0",
   "scripts": {
+    "prepack": "yarn build",
     "build": "yarn clean && yarn compile",
     "build:watch": "yarn compile -- -w",
     "clean": "rimraf ./lib",
