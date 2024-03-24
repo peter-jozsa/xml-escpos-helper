@@ -11,6 +11,11 @@ export default class DocumentNode extends XMLNode {
     if (this.attributes.reverse)
       bufferBuilder.startReverseMode();
 
+    const codePage = this.attributes["code-page"] && parseInt(this.attributes["code-page"]);
+    if (typeof codePage === 'number' && !isNaN(codePage)) {
+      bufferBuilder.setCodePage(codePage);
+    }
+
     return bufferBuilder;
   }
 
