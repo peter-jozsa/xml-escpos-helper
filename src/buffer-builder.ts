@@ -173,13 +173,13 @@ export class BufferBuilder {
     return this;
   }
 
-  public printText(text: string): BufferBuilder {
-    this.buffer.write(text, "utf8");
+  public printText(text: string, encoding?: BufferEncoding): BufferBuilder {
+    this.buffer.write(text, encoding);
     return this;
   }
 
-  public printTextLine(text: string): BufferBuilder {
-    return this.printText(text).breakLine();
+  public printTextLine(text: string, encoding?: BufferEncoding): BufferBuilder {
+    return this.printText(text, encoding).breakLine();
   }
 
   public breakLine(lines: number = 0): BufferBuilder {
