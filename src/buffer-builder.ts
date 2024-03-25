@@ -197,7 +197,7 @@ export class BufferBuilder {
     return this;
   }
 
-  public build(): number[] {
+  public build() {
     if (this.defaultSettings) {
       this.lineFeed();
       this.buffer.write(Command.ESC_init);
