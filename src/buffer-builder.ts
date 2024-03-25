@@ -1,16 +1,37 @@
 import { Command } from "./command";
 import { MutableBuffer } from "mutable-buffer";
 import Image from "./image";
+
+export interface BufferBuilderOptions {
+  defaultSettings: boolean
+  textEncoding?: string;
+}
+
+const defaultOptions: BufferBuilderOptions = {
+  defaultSettings: true,
+  textEncoding: "utf8",
+};
+
 export class BufferBuilder {
   private buffer: MutableBuffer;
   private hasGSCommand: boolean;
   private doEmphasise: boolean;
 
-  constructor(private defaultSettings: boolean = true) {
+  protected options: BufferBuilderOptions = defaultOptions;
+
+  constructor(options?: Partial<BufferBuilderOptions>) {
     this.buffer = new MutableBuffer();
     this.hasGSCommand = true;
     this.doEmphasise = false;
 
+    if (options) {
+      this.setOptions(options)
+    }
+  }
+
+  public setOptions(options: Partial<BufferBuilderOptions>): BufferBuilder {
+    this.options = { ...this.options, ...options };
+    return this;
   }
 
   public end(): BufferBuilder {
@@ -174,7 +195,7 @@ export class BufferBuilder {
   }
 
   public printText(text: string, encoding?: BufferEncoding): BufferBuilder {
-    this.buffer.write(text, encoding);
+    this.buffer.write(text, encoding ?? this.options.textEncoding);
     return this;
   }
 
@@ -198,7 +219,7 @@ export class BufferBuilder {
   }
 
   public build() {
-    if (this.defaultSettings) {
+    if (this.options.defaultSettings) {
       this.lineFeed();
       this.buffer.write(Command.ESC_init);
     }

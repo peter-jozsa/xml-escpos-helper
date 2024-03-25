@@ -16,6 +16,11 @@ export default class DocumentNode extends XMLNode {
       bufferBuilder.setCodePage(codePage);
     }
 
+    const textEncoding = this.attributes["text-encoding"];
+    if (textEncoding) {
+      bufferBuilder.setOptions({ textEncoding });
+    }
+
     return bufferBuilder;
   }
 

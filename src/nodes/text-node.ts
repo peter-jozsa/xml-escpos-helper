@@ -27,7 +27,7 @@ export default class TextNode extends XMLNode {
       .replace(/&#39;/g, "'")
       .replace(/&quot;/g, '"');
 
-    bufferBuilder.printText(text, this.attributes.encoding || 'utf-8');
+    bufferBuilder.printText(text, this.attributes.encoding);
     return bufferBuilder;
   }
 
