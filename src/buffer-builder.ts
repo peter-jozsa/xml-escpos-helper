@@ -1,6 +1,7 @@
 import { Command } from "./command";
 import { MutableBuffer } from "mutable-buffer";
 import Image from "./image";
+import { getTextEncoder } from "./text-encoder";
 
 export interface BufferBuilderOptions {
   defaultSettings: boolean
@@ -196,7 +197,11 @@ export class BufferBuilder {
 
   public printText(text: string, encoding?: BufferEncoding): BufferBuilder {
     const textEncoding = encoding ?? this.options.textEncoding
-    this.buffer.write(new TextDecoder(textEncoding).decode(Buffer.from(text, 'utf8')));
+    const encoder = getTextEncoder();
+    if (!encoder.encodingExists(textEncoding)) {
+      throw new Error(`Encoding "${textEncoding}" not supported`);
+    }
+    this.buffer.write(encoder.encode(text, textEncoding));
     return this;
   }
 
