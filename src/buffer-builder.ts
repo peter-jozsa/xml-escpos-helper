@@ -195,7 +195,8 @@ export class BufferBuilder {
   }
 
   public printText(text: string, encoding?: BufferEncoding): BufferBuilder {
-    this.buffer.write(text, encoding ?? this.options.textEncoding);
+    const textEncoding = encoding ?? this.options.textEncoding
+    this.buffer.write(new TextDecoder(textEncoding).decode(Buffer.from(text, 'utf8')));
     return this;
   }
 
