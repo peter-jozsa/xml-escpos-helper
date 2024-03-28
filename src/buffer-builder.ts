@@ -198,9 +198,6 @@ export class BufferBuilder {
   public printText(text: string, encoding?: BufferEncoding): BufferBuilder {
     const textEncoding = encoding ?? this.options.textEncoding
     const encoder = getTextEncoder();
-    if (!encoder.encodingExists(textEncoding)) {
-      throw new Error(`Encoding "${textEncoding}" not supported`);
-    }
     this.buffer.write(encoder.encode(text, textEncoding));
     return this;
   }

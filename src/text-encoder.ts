@@ -1,9 +1,5 @@
 class DefaultTextEncoder implements TextEncoder {
-  encodingExists(encoding: string): boolean {
-    return encoding === 'utf8' || encoding === 'utf-8'
-  }
-
-  encode(input: string, encoding: string): Uint8Array {
+  encode(input: string, encoding: string) {
     if (encoding === 'utf8' || encoding === 'utf-8') {
       return Buffer.from(input, 'utf8')
     } else {
@@ -16,8 +12,7 @@ class DefaultTextEncoder implements TextEncoder {
 let encoder: TextEncoder = new DefaultTextEncoder()
 
 export interface TextEncoder {
-  encodingExists(encoding: string): boolean;
-  encode(input: string, encoding: string): Uint8Array;
+  encode(input: string, encoding: string): ArrayLike<number> | Buffer | ArrayBuffer | SharedArrayBuffer;
 }
 
 export const registerTextEncoder = (enc: TextEncoder) => {
