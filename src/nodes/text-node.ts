@@ -25,7 +25,8 @@ export default class TextNode extends XMLNode {
       .replace(/&lt;/g, '<')
       .replace(/&gt;/g, '>')
       .replace(/&#39;/g, "'")
-      .replace(/&quot;/g, '"');
+      .replace(/&quot;/g, '"')
+      .replace(/<br(\s)*(\/)?>/g, '\n');
 
     bufferBuilder.printText(text, this.attributes.encoding);
     return bufferBuilder;
