@@ -15,6 +15,7 @@ import ImageNode from './nodes/image-node';
 import OpenCashDrawerNode from './nodes/open-cash-drawer-node';
 import PrintModeNode from './nodes/print-mode';
 import CodePageNode from './nodes/code-page-node';
+import HorizontalRuleNode from './nodes/horizontal-rule-node';
 
 export class NodeFactory {
 
@@ -37,6 +38,7 @@ export class NodeFactory {
       case 'image':       return new ImageNode(node);
       case 'print-mode':  return new PrintModeNode(node);
       case 'code-page':   return new CodePageNode(node);
+      case 'hr':           return new HorizontalRuleNode(node);
 
       default:           return null;
     }
